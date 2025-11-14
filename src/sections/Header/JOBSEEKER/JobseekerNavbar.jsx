@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../../assets/logo.img'
+import logo from '../../../assets/logo.png'
 // Mock assets and hooks are kept for context
 const useNavigate = () => (path) => console.log(`Navigating to: ${path}`);
 const useAuth = () => ({
