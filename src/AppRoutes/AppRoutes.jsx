@@ -22,6 +22,8 @@ import Hero from '../Pages/JOBSEEKER/Hero'
 import JSLandingPage from '../Pages/JOBSEEKER/LandingPage/JSLandingPage'
 import JSHomePage from '../Pages/JOBSEEKER/HomePage/JSHomePage'
 import JobLayout from "../Pages/JOBSEEKER/JobPage/JobLayout";
+import SubmitPage from "../Pages/JOBSEEKER/SubmitPage/SubmitPage";
+import ProfilePage from "../Pages/JOBSEEKER/ProfilePage/ProfilePage";
 
 function AppRoutes(){
   return (
@@ -45,6 +47,8 @@ function AppRoutes(){
              <Route index element={<JSLandingPage/>}/>
              <Route path="home" element ={<JSHomePage/>}/>
              <Route path ="jobs" element={<JobLayout/>}/>
+             <Route path="submit" element={<SubmitPage/>}/>
+             <Route path="profile" element={<ProfilePage/>}/>
           </Route>
           <Route path="employer-dashboard" element={<div>Employer Dashboard Placeholder</div>} />
 

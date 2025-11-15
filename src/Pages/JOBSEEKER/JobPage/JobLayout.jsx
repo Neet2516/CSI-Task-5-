@@ -25,12 +25,12 @@ const JobLayout = () => {
             <div className='hover:text-blue-500 cursor-pointer my-8  '>See more</div>
         </div>
         
-        <div className='flex gap-5'>
-            <div className='w-1/4 flex flex-col '>
+        <div className='flex flex-col md:flex-row gap-5'>
+            <div className='md:w-1/4 flex flex-col '>
                 <SearchFilter/>
             </div>
-            <div className='w-3/4'>
-                <Jobavail/>
+            <div className='md:w-3/4 pr-10'>
+                <Jobavail />
                 <div className='text-gray-500 flex mt-5 text-sm justify-between mr-2'>
                     <h1 className='text-xl  libre-regular'>Showing x of 10 results</h1>
                     <button className='p-2 border'>Sort by latest  ^</button>

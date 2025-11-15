@@ -5,6 +5,7 @@ import logo from '../assets/logo.png';
 import googleIcon from '../assets/login/google.png'; 
 import facebookIcon from '../assets/login/facebook.png'; 
 import appleIcon from '../assets/login/apple.png'; 
+import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -45,7 +46,14 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Login successful. Received data:", data);
+        const token = (data.accessToken);
+        localStorage.setItem("accessToken",data.accessToken)
+        const decoded = jwtDecode(token);
+        console.log(decoded);
         alert("Login Successful! Ready to redirect.");
+        if(decoded.role=="JOBSEEKER"){
+          navigate("/jobs");
+        }
 
       } else {
         console.error("Login Error:", data);
