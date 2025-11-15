@@ -1,9 +1,10 @@
-import React from 'react'
+import React ,{useRef} from 'react'
 
 import landingimg from '../../../assets/JOBSEEKER/landingimg.png'
 import Pattern from './Pattern';
 import Trust from './Trust';
 import Testimonials from './Testimonials';
+import { motion, useInView } from "framer-motion";
 const BriefcaseIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
@@ -41,12 +42,6 @@ const SearchIcon = ({ className }) => (
     </svg>
 );
 
-
-// =================================================================
-// TOP COMPANIES SUB-COMPONENTS (Previously in TopCompanies.jsx)
-// =================================================================
-
-// Instagram Logo SVG (Simplified)
 const InstagramLogo = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-pink-600 p-2 border-2 border-pink-400 rounded-2xl shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -184,7 +179,8 @@ const JSLandingPage = () => {
     // Placeholder data for the select inputs
     const locations = ['New York', 'London', 'Remote', 'Bangalore'];
     const categories = ['Technology', 'Marketing', 'Finance', 'Healthcare'];
-
+    const ref = useRef(null);
+    const isInView = useInView(ref, { amount: 0.3 });
     return (
         <>
         <div className='bg-white flex flex-col gap-10'>
@@ -264,7 +260,11 @@ const JSLandingPage = () => {
             </div>
             
             {/* Top Companies Section */}
-            <TopCompanies/>
+
+            <motion.div >
+                        <TopCompanies />
+            </motion.div>
+            {/* <TopCompanies/> */}
             <Pattern/>
             <Testimonials/>
             <Trust/>

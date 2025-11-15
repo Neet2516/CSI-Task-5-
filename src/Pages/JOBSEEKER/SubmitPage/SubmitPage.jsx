@@ -4,8 +4,10 @@ import left from './assets/left.png'
 import right from './assets/right.png'
 import arrow from './assets/arrow.png'
 import { MdDone } from "react-icons/md";
+import { useNavigate } from 'react-router'
 
 const SubmitPage = () => {
+    const navigate =useNavigate();
   return (
    <div className='w-full relative flex min-h-[900px]' style={{ backgroundImage: `url(${background})` }}>
     <div className='hidden md:block w-1/3 '>
@@ -32,13 +34,11 @@ const SubmitPage = () => {
 
         <span className='border-b  border-b-purple-600 font-semibold my-10'><a href="" className='text-purple-600'>Check yoour appliactions on Recent Activities</a></span>
 
-        <center><button className='bg-blue-950 hover:bg-blue-200 text-white poppins-regular px-8 py-3 my-10'>Return to a job search</button></center>
+        <center><button className='bg-blue-950 hover:bg-blue-200 text-white poppins-regular px-8 py-3 my-10' onClick={()=>{
+            navigate("/jobs/jobs")
+        }}>Return to a job search</button></center>
     
     </div>
-    
-    
-    
-    
     </div>
 
     <div className='hidden md:block w-1/3  '>

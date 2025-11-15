@@ -192,6 +192,7 @@ const ProfilePage = () => {
         contactConsent: false,
       });
       setFiles({ resume: null, profileImage: null, additionalFile: null });
+      navigate("jobs/submit")
     }
   } catch (err) {
     console.error("Network/submit error:", err);
