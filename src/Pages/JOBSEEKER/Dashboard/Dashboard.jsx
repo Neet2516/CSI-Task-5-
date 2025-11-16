@@ -5,7 +5,8 @@ import {
     FileText,
     Bookmark,
     Search,
-    LogOut
+    LogOut,
+    Menu
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -46,16 +47,20 @@ const StatusBadge = ({ status }) => {
 };
 
 export default function Dashboard() {
-    const accessData = JSON.parse(localStorage.getItem("accessData")) || {}; // safely parse or fallback to an empty object
-const [name, setName] = useState(accessData.name || ""); // access name from parsed data
-console.log(accessData.name); // safely log name
 
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [name, setName] = useState("");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
     const [recentApplications, setRecentApplications] = useState([]);
 
-    // Dummy data
+    useEffect(() => {
+        const accessData = JSON.parse(localStorage.getItem("accessData")) || {};
+        setName(accessData.name || "");
+    }, []);
+
     useEffect(() => {
         setRecentApplications([
             { id: 1, title: "Frontend Developer", company: "Tech Corp", date: "Nov 05, 2025", status: "Accepted" },
@@ -72,60 +77,76 @@ console.log(accessData.name); // safely log name
     return (
         <div className="flex h-screen bg-gray-50 font-sans">
 
-            {/* Sidebar */}
-            <aside className="w-64 bg-[#2f426a] text-white flex flex-col p-4 shadow-2xl">
-                <h1 className="text-2xl font-bold mb-8">JobSeeker</h1>
+            {/* MOBILE HEADER */}
+            <div className=" relative top-0 lg:hidden flex items-center justify-between h-5 p-4  text-black">
+                {/* <h1 className="text-xl font-bold">JobSeeker</h1> */}
+                <Menu
+                    className="w-7 h-7 cursor-pointer"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                />
+            </div>
 
-                <nav className="flex-grow">
+            {/* SIDEBAR */}
+            <aside
+                className={`
+                    fixed lg:static top-0 left-0 h-full w-64 bg-[#2f426a] text-white shadow-2xl p-4 flex flex-col
+                    transform transition-transform duration-300
+                    ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+                    z-50
+                `}
+            >
+                <h1 className="text-2xl font-bold mb-8 hidden lg:block">JobSeeker</h1>
+
+                <nav className="grow">
 
                     <SidebarLink
                         icon={BarChart}
                         text="Dashboard"
                         active={location.pathname === "/jobs/dashboard"}
-                        onClick={() => navigate("/jobs/dashboard")}
+                        onClick={() => { navigate("/jobs/dashboard"); setMobileMenuOpen(false); }}
                     />
 
                     <SidebarLink
                         icon={User}
                         text="My Profile"
                         active={location.pathname === "/jobs/profile"}
-                        onClick={() => navigate("/jobs/profile")}
+                        onClick={() => { navigate("/jobs/profile"); setMobileMenuOpen(false); }}
                     />
 
                     <SidebarLink
                         icon={FileText}
                         text="My Application"
                         active={location.pathname === "/jobs/applications"}
-                        onClick={() => navigate("/jobs/applications")}
+                        onClick={() => { navigate("/jobs/applications"); setMobileMenuOpen(false); }}
                     />
 
                     <SidebarLink
                         icon={Bookmark}
                         text="Saved Jobs"
                         active={location.pathname === "/jobs/saved-jobs"}
-                        onClick={() => navigate("/jobs/saved-jobs")}
+                        onClick={() => { navigate("/jobs/saved-jobs"); setMobileMenuOpen(false); }}
                     />
 
                     <SidebarLink
                         icon={Search}
                         text="Job Search"
                         active={location.pathname === "/jobs/jobs"}
-                        onClick={() => navigate("/jobs/jobs")}
+                        onClick={() => { navigate("/jobs/jobs"); setMobileMenuOpen(false); }}
                     />
 
                     <div className="mt-12">
                         <SidebarLink
                             icon={LogOut}
                             text="Logout"
-                            isLogout={true}
+                            isLogout
                             onClick={handleLogout}
                         />
                     </div>
                 </nav>
             </aside>
 
-            {/* Main Content */}
-            <main className="grow overflow-y-auto p-8">
+            {/* MAIN CONTENT */}
+            <main className="w-full sm:w-auto grow overflow-y-auto p-8 mt-14 lg:mt-0">
                 <h1 className="text-3xl font-bold">Welcome Back! {name} </h1>
                 <p className="text-gray-600 mb-8">Here is your activity summary.</p>
 
@@ -138,8 +159,9 @@ console.log(accessData.name); // safely log name
                 </div>
 
                 {/* Recent Applications Table */}
-                <div className="bg-white p-6 rounded-xl shadow-lg border">
+                <div className="bg-white p-6 rounded-xl shadow-lg border overflow-x-auto">
                     <h2 className="text-xl font-bold mb-4">My Recent Applications</h2>
+
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr className="text-left text-xs font-medium text-gray-500">
@@ -149,8 +171,9 @@ console.log(accessData.name); // safely log name
                                 <th className="py-3 text-right">Status</th>
                             </tr>
                         </thead>
+
                         <tbody className="divide-y">
-                            {recentApplications.map((app) => (
+                            {recentApplications.map(app => (
                                 <tr key={app.id} className="hover:bg-gray-50">
                                     <td className="py-3 font-medium">{app.title}</td>
                                     <td>{app.company}</td>
@@ -162,6 +185,7 @@ console.log(accessData.name); // safely log name
                             ))}
                         </tbody>
                     </table>
+
                 </div>
             </main>
         </div>
