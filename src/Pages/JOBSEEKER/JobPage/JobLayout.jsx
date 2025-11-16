@@ -16,7 +16,7 @@ const JobLayout = () => {
 
   return (
     <div>
-      <div className='relative h-150' style ={{backgroundImage: `url(${img1})`}}>
+      <div className='relative h-50 md:h-150' style ={{backgroundImage: `url(${img1})`}}>
         <img src={img2} className="h-full w-full" alt=""/>
       </div>
       <div>
@@ -41,7 +41,7 @@ const JobLayout = () => {
                     <button className='p-1 pr-4 border-gray-800  border  rounded-lg text-gray-500
                     '>{`Next >`}</button>
                 </div>
-                <img src={building}  className="mt-10 h-80 w-full mr-2" alt="" />
+                <img src={building}  className="mt-10 h-50 sm:h-80 w-full mr-2" alt="" />
                 
             </div>
         </div>

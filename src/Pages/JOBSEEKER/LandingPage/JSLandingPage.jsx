@@ -203,9 +203,9 @@ const JSLandingPage = () => {
                 <div className='absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10'>
                     
                     {/* Title and Subtitle */}
-                    <h1 className='text-4xl md:text-6xl font-serif font-extrabold text-white mb-4 drop-shadow-lg'>
+                    <div className='text-[1.5rem] sm:text-4xl md:text-6xl font-serif font-extrabold text-white mb-4 drop-shadow-lg'>
                         Find Your Dream Job Today!
-                    </h1>
+                    </div>
                     <p className='text-lg md:text-xl text-gray-200 mb-12 drop-shadow-md max-w-2xl'>
                         Connecting Talent with Opportunity: Your Gateway to Career Success
                     </p>

@@ -1,13 +1,12 @@
 import React, { useState, useRef ,useEffect} from 'react';
 import logo from '../../../assets/logo.png';
-import { useNavigate } from 'react-router';
-
+import { Link, useNavigate } from 'react-router';
+import SNav from '../Header'
 const useAuth = () => ({
     user: { id: 'user-001' },
     profilePicUrl: "https://placehold.co/40x40/15294B/ffffff?text=8"
 });
 
-/* --------------------- ICON COMPONENTS --------------------- */
 
 const HomeIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
@@ -46,6 +45,13 @@ const SearchIcon = ({ className }) => (
         <circle cx="11" cy="11" r="8"></circle>
         <path d="m21 21-4.3-4.3"></path>
     </svg>
+);
+const ProfileIcon=()=>(
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" stroke="gray" strokeWidth="2" className="p-1">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+    </svg>
+    
 );
 
 const MicIcon = ({ className }) => (
@@ -128,6 +134,12 @@ const JobseekerNavbar = () => {
         { label: 'Chats', path: '/jobs/chats', icon: ChatIcon },
         { label: 'Jobs', path: '/jobs/jobs', icon: BriefcaseIcon },
     ];
+    const bottomnavItems = [
+        { label: 'Home', path: '/jobs/home', icon: HomeIcon },
+        { label: 'Chats', path: '/jobs/chats', icon: ChatIcon },
+        { label: 'Jobs', path: '/jobs/jobs', icon: BriefcaseIcon },
+        { label: 'Profile', path: '/jobs/dashboard', icon: ProfileIcon },
+    ];
     
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("🇮🇳 India");
@@ -155,7 +167,7 @@ const JobseekerNavbar = () => {
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
             <header className="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200">
                 <div className="w-full px-5 py-3">
-                    <div className="flex w-full justify-between items-center h-16">
+                    <div className=" hidden sm:flex w-full justify-between items-center h-16">
 
                         {/* LOGO */}
                         <button onClick={() => navigate("/jobs")}>
@@ -207,12 +219,14 @@ const JobseekerNavbar = () => {
                             </nav>
 
                             {/* NOTIFICATION */}
+                            <Link to ="/jobs/submit"  >
                             <div className="p-3 relative rounded-xl border bg-white shadow-md hover:bg-gray-50 cursor-pointer">
                                 <BellIcon className="text-gray-700" />
                                 <span className="absolute top-0 right-0 px-1.5 py-0.5 text-xs text-white bg-red-600 rounded-full">
-                                    1
+                                        1
                                 </span>
                             </div>
+                            </Link>
 
                             {/* COUNTRY */}
                              <div ref={dropdownRef} className="relative inline-block">
@@ -263,10 +277,12 @@ const JobseekerNavbar = () => {
                             </button>
                         </div>
                     </div>
+                    <SNav className= "block h-16 sm:hidden"/>
+                    
 
                     {/* MOBILE NAV */}
                     <nav className="fixed inset-x-0 bottom-0 bg-white shadow-2xl p-2 flex justify-around border-t border-gray-200 lg:hidden">
-                        {navItems.map(item => (
+                        {bottomnavItems.map(item => (
                             <button
                                 key={item.path}
                                 onClick={() => handleNavigation(item.path)}

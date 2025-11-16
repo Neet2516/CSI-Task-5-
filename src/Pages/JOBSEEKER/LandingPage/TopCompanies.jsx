@@ -98,7 +98,7 @@ const TopCompanies = () => {
                 
                 {/* Header and Subtitle */}
                 <div className="text-center mb-12 md:mb-16">
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                    <h2 className=" text-2xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 overflow-x-hidden">
                         Top Companies
                     </h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">

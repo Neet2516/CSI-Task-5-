@@ -46,6 +46,10 @@ const StatusBadge = ({ status }) => {
 };
 
 export default function Dashboard() {
+    const accessData = JSON.parse(localStorage.getItem("accessData")) || {}; // safely parse or fallback to an empty object
+const [name, setName] = useState(accessData.name || ""); // access name from parsed data
+console.log(accessData.name); // safely log name
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -121,8 +125,8 @@ export default function Dashboard() {
             </aside>
 
             {/* Main Content */}
-            <main className="flex-grow overflow-y-auto p-8">
-                <h1 className="text-3xl font-bold">Welcome Back!</h1>
+            <main className="grow overflow-y-auto p-8">
+                <h1 className="text-3xl font-bold">Welcome Back! {name} </h1>
                 <p className="text-gray-600 mb-8">Here is your activity summary.</p>
 
                 {/* Summary Cards */}

@@ -49,7 +49,8 @@ const Login = () => {
         const token = (data.accessToken);
         localStorage.setItem("accessToken",data.accessToken)
         const decoded = jwtDecode(token);
-        console.log(decoded);
+        console.log(JSON.stringify(decoded));
+        localStorage.setItem("accessData",JSON.stringify(decoded));
         alert("Login Successful! Ready to redirect.");
         if(decoded.role=="JOBSEEKER"){
           navigate("/jobs");
@@ -81,13 +82,13 @@ const Login = () => {
             <label htmlFor="email" className="block text-[#a8adb7] text-sm font-semibold mb-2">
               Email
             </label>
-            <div className="relative flex items-center border-b border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
+            <div className="relative flex items-center border-b border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500 overscroll-x-scroll">
               <FaRegEnvelope className="text-black mr-3" />
               <input
                 type="email"
                 id="email"
-                placeholder="Enter your email address"
-                className="grow outline-none poppins-regular text-black"
+                placeholder="Email"
+                className="grow poppins-regular overflow-x-hidden flex-1 min-w-0 outline-none poppins-regular text-black"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -99,29 +100,33 @@ const Login = () => {
             <label htmlFor="password" className="block text-[#a8adb7] text-sm font-semibold mb-2">
               Password
             </label>
-            <div className="relative flex items-center border-b border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
-              <FaLock className=" text-black mr-3" />
-              <input
-                type={passwordShown ? "text" : "password"}
-                id="password"
-                placeholder="Enter your Password"
-                className="grow outline-none poppins-regular text-black"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="ml-3 text-gray-500 hover:text-gray-700 focus:outline-none"
-              >
-                {passwordShown ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
+            <div className="relative flex items-center border border-gray-300 rounded-lg px-3 py-2 
+                focus-within:ring-2 focus-within:ring-blue-500 
+                w-full max-w-md mx-auto">
+
+          <FaLock className="text-black mr-3 shrink-0" />
+                      <input
+            type={passwordShown ? "text" : "password"}
+            id="password"
+            placeholder="Password"
+            className="flex-1 min-w-0 outline-none poppins-regular text-black"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+                    <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="ml-3 text-gray-500 hover:text-gray-700 focus:outline-none shrink-0"
+          >
+            {passwordShown ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
+
           </div>
 
           {/* Remember Me & Forgot Password */}
-          <div className="flex justify-between items-center mb-8 text-sm">
+          <div className="flex flex-col md:flex-row flex-center justify-center md:justify-between md:items-center mb-8 text-sm">
             <label htmlFor="rememberMe" className="flex items-center text-gray-700">
               <input
                 type="checkbox"

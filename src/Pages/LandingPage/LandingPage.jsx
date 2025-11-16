@@ -25,11 +25,13 @@ const LandingPage = () => {
           <h3 className="libre-regular mt-10 text-4xl font-bold">"Find Your Next Opportunity</h3><h3 className="libre-regular text-4xl font-bold mb-5">Hire Your Perfect Candidate"</h3>
           <p className='text-[1.5rem]'>"The all-in-one platform that connects top talent with leading companies."</p>
 
-          <div className='flex justify-center items-center gap-20 my-10 text-white'>
-            <button  className='bg-[#15294b] text-sm libre-regular py-5 px-25 '  onClick={()=>{
+          <div className='flex flex-col md:flex-row justify-center items-center gap-20 my-10 text-white'>
+            <button  className='bg-[#15294b] text-sm libre-regular py-5 px-25 rounded-lg transition-all duration-300 ease-out
+               hover:bg-blue-600 cursor-pointer '  onClick={()=>{
                 navigate("auth/login")
             }}>Log in</button>
-            <button  className='bg-[#15294b] text-sm libre-regular py-5 px-25 ' onClick={()=>{
+            <button  className='bg-[#15294b] text-sm libre-regular py-5 px-25 rounded-lg transition-all duration-300 ease-out
+               hover:bg-blue-600 cursor-pointer ' onClick={()=>{
                 navigate("auth/register")
             }}>Sign Up</button>
           </div>
@@ -39,7 +41,7 @@ const LandingPage = () => {
     <div className='mt-10 w-full'><img src={secondimage} className='w-full  bg-cover bg-center' alt="" /></div>
     <div className='my-10 bg-[#0E224D] flex items-center justify-between'>
         <GetTheApp/>
-        <div className='w-3/5 h-full'><img src={thirdimage} alt="" /></div>
+        <div className='hidden md:block md:w-3/5 h-full'><img src={thirdimage} alt="" /></div>
     </div>
       <Footer />
     </div>
