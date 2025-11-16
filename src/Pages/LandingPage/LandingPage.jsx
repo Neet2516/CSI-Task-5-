@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../sections/Header/Header';
-import Footer from '../sections/Footer/Footer';
-import topimage from '../assets/LandingPage/top-image.png';
-import LandingPageFeatures from './LandingPage/LandingPageFeatures';
-import secondimage from '../assets/LandingPage/second-img.png'
-import thirdimage from '../assets/LandingPage/third-img.png'
-import GetTheApp from './LandingPage/GetTheApp';
+import Header from '../../sections/Header/Header';
+import Footer from '../../sections/Footer/Footer';
+import topimage from '../../assets/LandingPage/top-image.png';
+import LandingPageFeatures from './LandingPageFeatures';
+import secondimage from '../../assets/LandingPage/second-img.png'
+import thirdimage from '../../assets/LandingPage/third-img.png'
+import GetTheApp from './GetTheApp';
 import { useNavigate } from 'react-router';
 const LandingPage = () => {
     const navigate = useNavigate();

@@ -39,6 +39,7 @@ const SubmitPage = () => {
         }}>Return to a job search</button></center>
     
     </div>
+
     </div>
 
     <div className='hidden md:block w-1/3  '>

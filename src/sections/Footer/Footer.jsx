@@ -3,6 +3,7 @@ import React from 'react';
 import apple from '../../assets/footer/apple.png'
 import facebook from '../../assets/footer/facebook.png'
 import google from '../../assets/footer/google.png'
+import { Link } from 'react-router';
 const Footer = () => {
   // Define the navigation links and resources data structure
   const footerLinks = [
@@ -28,7 +29,7 @@ const Footer = () => {
             {/* Logo */}
             <div className="flex items-center space-x-2">
               {/* Replace with your actual Logo component or image */}
-              <span className="text-xl font-bold text-white">NextStep</span>
+              <span className="text-xl font-bold text-white"><Link to="/">NextStep</Link></span>
             </div>
             {/* Description */}
             <p className="text-sm leading-relaxed">
@@ -44,7 +45,7 @@ const Footer = () => {
                 {section.links.map((link) => (
                   <li key={link}>
                     <a 
-                      href={`/${link.toLowerCase().replace(/\s/g, '-')}`} 
+                      href={`about`} 
                       className="hover:text-blue-400 transition-colors"
                     >
                       {link}

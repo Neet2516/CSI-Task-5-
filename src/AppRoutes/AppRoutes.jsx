@@ -17,13 +17,15 @@ import PasswordUpdated from "../AuthPage/PasswordUpdated"; // Assuming PasswordU
 import Footer from "../sections/Footer/Footer" // Keeping structure for sections
 import Header from "../sections/Header/Header" // Keeping structure for sections
 import Role from "../ChooseRole/Role" // Assuming Role is now in a simple path for demonstration/testing
-import LandingPage from "../Pages/LandingPage";
+import LandingPage from "../Pages/LandingPage/LandingPage";
 import Hero from '../Pages/JOBSEEKER/Hero'
 import JSLandingPage from '../Pages/JOBSEEKER/LandingPage/JSLandingPage'
 import JSHomePage from '../Pages/JOBSEEKER/HomePage/JSHomePage'
 import JobLayout from "../Pages/JOBSEEKER/JobPage/JobLayout";
 import SubmitPage from "../Pages/JOBSEEKER/SubmitPage/SubmitPage";
 import ProfilePage from "../Pages/JOBSEEKER/ProfilePage/ProfilePage";
+import AboutUsPage from "../Pages/AboutsUsPage/AboutUsPage";
+import Dashboard from "../Pages/JOBSEEKER/Dashboard/Dashboard";
 
 function AppRoutes(){
   return (
@@ -43,12 +45,17 @@ function AppRoutes(){
           <Route path="choose-role" element={<Role/>}/>
 
           
+          <Route path="about" element={<AboutUsPage/>}/>
           <Route path="jobs" element={<Hero/>} >
              <Route index element={<JSLandingPage/>}/>
              <Route path="home" element ={<JSHomePage/>}/>
              <Route path ="jobs" element={<JobLayout/>}/>
              <Route path="submit" element={<SubmitPage/>}/>
              <Route path="profile" element={<ProfilePage/>}/>
+             <Route path="dashboard" element={<Dashboard/>}/>
+             <Route path="applications" element={<div>Applications Page</div>} />
+            <Route path="saved-jobs" element={<div>Saved Jobs Page</div>} />
+
           </Route>
           <Route path="employer-dashboard" element={<div>Employer Dashboard Placeholder</div>} />
 

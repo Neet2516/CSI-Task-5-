@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef ,useEffect} from 'react';
 import logo from '../../../assets/logo.png';
 import { useNavigate } from 'react-router';
 
@@ -128,6 +128,26 @@ const JobseekerNavbar = () => {
         { label: 'Chats', path: '/jobs/chats', icon: ChatIcon },
         { label: 'Jobs', path: '/jobs/jobs', icon: BriefcaseIcon },
     ];
+    
+    const [open, setOpen] = useState(false);
+    const [selected, setSelected] = useState("🇮🇳 India");
+    const dropdownRef = useRef(null);
+    const options = ["🇮🇳 India", "🇺🇸 USA", "🇬🇧 UK"];
+
+     useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+     const selectCountry = (country) => {
+    setSelected(country);
+    setOpen(false);
+    };
 
     /* --------------------- UI + LAYOUT (UNCHANGED) --------------------- */
 
@@ -195,15 +215,47 @@ const JobseekerNavbar = () => {
                             </div>
 
                             {/* COUNTRY */}
-                            <div className="p-3 rounded-xl border bg-white shadow-md flex items-center space-x-2 cursor-pointer">
-                                <span className="text-xl">🇮🇳</span>
-                                <svg width="16" height="16" fill="none" stroke="gray" strokeWidth="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                             <div ref={dropdownRef} className="relative inline-block">
+      {/* Trigger */}
+      <div
+        onClick={() => setOpen(!open)}
+        className="p-3 rounded-xl border bg-white shadow-md flex items-center space-x-2 cursor-pointer"
+      >
+        <span className="text-xl">{selected.split(" ")[0]}</span>
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="gray"
+          strokeWidth="2"
+          className={`transform transition-transform ${
+            open ? "rotate-180" : "rotate-0"
+          }`}
+        >
+          <polyline points="4 6 8 10 12 6"></polyline>
+        </svg>
+      </div>
+
+      {/* Dropdown Menu */}
+      {open && (
+        <div className="absolute mt-2 w-40 bg-white border rounded-xl shadow-lg py-2 z-10">
+          {options.map((country) => (
+            <div
+              key={country}
+              onClick={() => selectCountry(country)}
+              className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+            >
+              {country}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
 
                             {/* PROFILE ICON */}
-                            <button className="w-10 h-10 rounded-xl bg-[#15294B] overflow-hidden shadow-lg border-2 border-[#15294B]">
+                            <button className="w-10 h-10 rounded-xl bg-[#15294B] overflow-hidden shadow-lg border-2 border-[#15294B]" onClick={()=>{
+                                navigate("/jobs/dashboard")
+                            }}>
                                 <svg width="40" height="40" fill="none" stroke="white" strokeWidth="2" className="p-1">
                                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
