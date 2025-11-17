@@ -1,7 +1,7 @@
 @import "tailwindcss";
 html {
   scroll-behavior: smooth;
-}
+} 
 .libre-regular {
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
