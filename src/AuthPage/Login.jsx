@@ -54,6 +54,8 @@ const Login = () => {
         alert("Login Successful! Ready to redirect.");
         if(decoded.role=="JOBSEEKER"){
           navigate("/jobs");
+        }if(decoded.role=="JOBGIVER"){
+          navigate("/recruiter");
         }
 
       } else {

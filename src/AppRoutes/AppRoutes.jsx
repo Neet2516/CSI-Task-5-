@@ -1,11 +1,6 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom" // Use 'react-router-dom' for imports
-// NOTE: I am fixing the file paths by assuming the components 
-// are located within the same directory as App.jsx, or in a flat structure 
-// if the previous paths were using relative addressing from a deeper level.
-// If the components are in sibling folders, we must adjust the paths below.
-// I will assume a standard structure for now, where these paths should be relative 
-// to the root of the source directory, or adjust the path depth.
+
 
 // --- Fixed Imports ---
 import AuthLayout from "../AuthPage/AuthLayout" // Assuming AuthLayout is a sibling component
@@ -26,6 +21,11 @@ import SubmitPage from "../Pages/JOBSEEKER/SubmitPage/SubmitPage";
 import ProfilePage from "../Pages/JOBSEEKER/ProfilePage/ProfilePage";
 import AboutUsPage from "../Pages/AboutsUsPage/AboutUsPage";
 import Dashboard from "../Pages/JOBSEEKER/Dashboard/Dashboard";
+import JobRecruiterOutlet from '../Pages/JOBRECRUITER/Hero'
+import JRLandingPage from "../Pages/JOBRECRUITER/LandingPage/JRLandingPage";
+import JRHomePage from '../Pages/JOBRECRUITER/HomePage/JRHomePage'
+import JRSubmitPage from '../Pages/JOBRECRUITER/SubmitPage/SubmitPage'
+import JRProfilePage from '../Pages/JOBRECRUITER/ProfilePage/ProfilePage'
 
 function AppRoutes(){
   return (
@@ -57,7 +57,14 @@ function AppRoutes(){
             <Route path="saved-jobs" element={<div>Saved Jobs Page</div>} />
 
           </Route>
-          <Route path="employer-dashboard" element={<div>Employer Dashboard Placeholder</div>} />
+          <Route path="recruiter" element={<JobRecruiterOutlet/>} >
+            <Route path="" element={<JRLandingPage/>}></Route>
+            <Route path="home"  element={<JRHomePage/>}/>
+            <Route path="submit" element={<JRSubmitPage/>}/>
+            <Route path="profile" element={<JRProfilePage/>}/>
+
+
+          </Route>
 
         </Routes>
       </BrowserRouter>
