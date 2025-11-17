@@ -6,13 +6,13 @@ import Trust from './Trust';
 import Testimonials from './Testimonials';
 import RecruitmentFeatures from './RecruitmentFeatures';
 import { motion, useInView } from "framer-motion";
+import {  useNavigate } from 'react-router';
 const BriefcaseIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
         <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
     </svg>
 );
-
 // Icon for Candidates (Users)
 const UsersIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -130,6 +130,8 @@ const JRLandingPage = () => {
         color: 'text-[#1c787a]',
     },
 ];
+    
+    const navigate=useNavigate();
     // Data for the statistics section
    
 
@@ -173,11 +175,17 @@ const JRLandingPage = () => {
             <div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-24'>
                 <button
                     className="py-3 px-10 text-lg font-semibold rounded-lg bg-[#15294B] text-white hover:bg-[#203a64] transition duration-300 cursor-pointer shadow-xl "
+                    onClick={()=>{
+                        navigate("/recruiter/home")
+                    }}
                 >
                     Post A Job Now
                 </button>
                 <button
                     className="py-3 px-10 text-lg font-semibold rounded-lg bg-white text-[#15294B] hover:bg-gray-100 transition duration-300 cursor-pointer shadow-xl border border-[#15294B] "
+                    onClick={()=>{
+                        navigate("/recruiter/profile");
+                    }}
                 >
                     Create Recruiter Profile
                 </button>

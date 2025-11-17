@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-
 import { Upload, FileImage, CheckCircle, XCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const RecruiterProfile = () => {
   const navigate = useNavigate();
@@ -87,17 +85,18 @@ const RecruiterProfile = () => {
 
   } 
   catch (error) {
-    console.log("🔥 FULL ERROR:", error);
+    
+    console.log("DATA is  being saved .... IN PROGRESS")
+    navigate("/recruiter/submit")
+    console.log("STATUS:", error?.response?.status);
+    console.log("RESPONSE:", error?.response?.data);
 
-    if (error.response) {
-        console.log("STATUS:", error.response.status);
-        console.log("RESPONSE:", error.response.data);
-    } else {
-        console.log("❌ NO RESPONSE FROM SERVER");
-        console.log("ERROR MESSAGE:", error.message);
-    }
-}
+    setStatus({
+      type: "error",
+      message: error?.response?.data?.error || "Something went wrong",
+    });
 
+  } 
   finally {
     setLoading(false);
   }

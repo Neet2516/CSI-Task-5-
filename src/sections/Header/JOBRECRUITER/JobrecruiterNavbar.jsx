@@ -260,7 +260,7 @@ const JobrecruiterNavbar = () => {
 
                             {/* PROFILE ICON */}
                             <button className="w-10 h-10 rounded-xl bg-[#15294B] overflow-hidden shadow-lg border-2 border-[#15294B]" onClick={()=>{
-                                navigate("/jobs/dashboard")
+                                navigate("/recruiter/dashboard")
                             }}>
                                 <svg width="40" height="40" fill="none" stroke="white" strokeWidth="2" className="p-1">
                                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>

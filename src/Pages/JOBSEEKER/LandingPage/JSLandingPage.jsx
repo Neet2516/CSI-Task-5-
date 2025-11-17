@@ -5,6 +5,7 @@ import Pattern from './Pattern';
 import Trust from './Trust';
 import Testimonials from './Testimonials';
 import { motion, useInView } from "framer-motion";
+import { useNavigate } from 'react-router';
 const BriefcaseIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
@@ -181,6 +182,7 @@ const JSLandingPage = () => {
     const categories = ['Technology', 'Marketing', 'Finance', 'Healthcare'];
     const ref = useRef(null);
     const isInView = useInView(ref, { amount: 0.3 });
+    const navigate=useNavigate();
     return (
         <>
         <div className='bg-white flex flex-col gap-10'>
@@ -238,6 +240,9 @@ const JSLandingPage = () => {
                             <button
                                 type="submit"
                                 className="w-full h-full p-5 lg:w-auto flex items-center justify-center space-x-2 px-6  bg-[#ebedf0] text-white font-semibold  hover:bg-blue-800 transition duration-300 shadow-md pl-8"
+                                onClick={()=>{
+                                    navigate("/jobs/jobs")
+                                }}
                             >
                                 <SearchIcon className="w-5 h-5" />
                                 <span className='text-nowrap text-black'>Search Job</span>

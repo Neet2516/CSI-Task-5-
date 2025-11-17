@@ -51,11 +51,11 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [name, setName] = useState("");
+    
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const [recentApplications, setRecentApplications] = useState([]);
-
+    const [name, setName] = useState("");
     useEffect(() => {
         const accessData = JSON.parse(localStorage.getItem("accessData")) || {};
         setName(accessData.name || "");
