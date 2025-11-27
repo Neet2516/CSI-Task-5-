@@ -9,7 +9,9 @@ import {
     Menu
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+    
 // Sidebar Link Component
 const SidebarLink = ({ icon: Icon, text, active, isLogout = false, onClick }) => (
     <div
@@ -46,7 +48,35 @@ const StatusBadge = ({ status }) => {
     );
 };
 
-export default function Dashboard() {
+export default  function Dashboard() {
+const [token, setToken] = useState("");
+
+useEffect(() => {
+  const t = localStorage.getItem("accessToken");
+  console.log("TOKEN BUDDYDYYY " ,token);
+  setToken(t);
+}, []);
+const [totalapplication , Settotalapplication]= useState(1);
+const [pendingapplication,Setpendingapplication] = useState(0);
+const [  acceptedapplication,Setacceptedapplication] = useState(1);
+const [rejectedapplication,Setrejectedapplication] =useState(0);
+const [recentApplications, setRecentApplications] = useState([]);
+    const  res = async () => {
+        console.log("TOKEN = ", token);
+
+      const details = await fetch("https://job-portal-my15.onrender.com/api/jobseeker/dashboard",{
+        method :"GET" ,
+         headers: {
+        Authorization: `Bearer ${token}`, // DO NOT set Content-Type
+      }
+      }) ;
+      const resdetails = await details.json(); 
+      console.log(resdetails);
+      Settotalapplication(resdetails.totalApplications)
+      Setacceptedapplication(resdetails.savedJobs)
+      setRecentApplications(resdetails.recentAppliedJobs);
+      console.log(resdetails.recentSavedJobs);
+    }
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -54,19 +84,21 @@ export default function Dashboard() {
     
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const [recentApplications, setRecentApplications] = useState([]);
     const [name, setName] = useState("");
-    useEffect(() => {
-        const accessData = JSON.parse(localStorage.getItem("accessData")) || {};
-        setName(accessData.name || "");
-    }, []);
 
     useEffect(() => {
-        setRecentApplications([
-            { id: 1, title: "Frontend Developer", company: "Tech Corp", date: "Nov 05, 2025", status: "Accepted" },
-            { id: 2, title: "UI/UX Designer", company: "DesignHub", date: "Nov 05, 2025", status: "Pending" },
-            { id: 3, title: "MERN Developer", company: "SoftX", date: "Nov 05, 2025", status: "Rejected" },
-        ]);
+          if (!token) return;  // wait until token is loaded
+            
+          const accessData = JSON.parse(localStorage.getItem("accessData")) || {};
+          setName(accessData.name || "");
+            
+          res();  // now token is valid
+            
+        }, [token]);
+    
+
+    useEffect(() => {
+        
     }, []);
 
     const handleLogout = () => {
@@ -74,9 +106,13 @@ export default function Dashboard() {
         navigate("/auth/login");
     };
 
+    const naam  =  useSelector(state=>state.user) ; 
+    const nayanaam =  naam.name  ; 
+    console.log(nayanaam);
     return (
+        
         <div className="flex h-screen bg-gray-50 font-sans">
-
+                
             {/* MOBILE HEADER */}
             <div className=" relative top-0 lg:hidden flex items-center justify-between h-5 p-4  text-black">
                 {/* <h1 className="text-xl font-bold">JobSeeker</h1> */}
@@ -152,10 +188,10 @@ export default function Dashboard() {
 
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                    <SummaryCard title="Total Applications" count="10" bgColor="bg-white" textColor="text-gray-900" />
-                    <SummaryCard title="Pending" count="2" bgColor="bg-white" textColor="text-yellow-500" />
-                    <SummaryCard title="Accepted" count="7" bgColor="bg-white" textColor="text-blue-600" />
-                    <SummaryCard title="Rejected" count="5" bgColor="bg-white" textColor="text-red-500" />
+                    <SummaryCard title="Total Applications" count={totalapplication} bgColor="bg-white" textColor="text-gray-900" />
+                    <SummaryCard title="Pending" count={pendingapplication} bgColor="bg-white" textColor="text-yellow-500" />
+                    <SummaryCard title="Accepted" count={acceptedapplication} bgColor="bg-white" textColor="text-blue-600" />
+                    <SummaryCard title="Rejected" count={rejectedapplication} bgColor="bg-white" textColor="text-red-500" />
                 </div>
 
                 {/* Recent Applications Table */}
@@ -173,7 +209,7 @@ export default function Dashboard() {
                         </thead>
 
                         <tbody className="divide-y">
-                            {recentApplications.map(app => (
+                            {recentApplications && recentApplications.map(app => (
                                 <tr key={app.id} className="hover:bg-gray-50">
                                     <td className="py-3 font-medium">{app.title}</td>
                                     <td>{app.company}</td>

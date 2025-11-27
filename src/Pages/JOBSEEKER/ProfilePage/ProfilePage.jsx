@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UploadCloud, FileText, Image, Code, CheckCircle, XCircle } from "lucide-react";
-
+import { useNavigate } from "react-router";
 // ===================== FileInput Component =====================
 const FileInput = ({ id, label, icon: Icon, note, onChange, hasFile }) => (
   <div className="flex flex-col mb-6 bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-inner">
@@ -93,6 +93,8 @@ const ProfilePage = () => {
 
   // ===================== Submit Handler =====================
  const handleSubmit = async (e) => {
+  
+const navigate = useNavigate();
   e.preventDefault();
   setLoading(true);
   setStatus(null);
@@ -115,7 +117,6 @@ const ProfilePage = () => {
     skills: formData.skills,             // array
     educations: formData.educations,     // array
     experiences: formData.experiences,   // array
-    // you can omit privacyConsent/contactConsent — backend may not expect them
   };
 
   // Basic client validation (optional but helpful)
@@ -175,6 +176,26 @@ const ProfilePage = () => {
         `Request failed: ${res.status} ${res.statusText}`;
       setStatus({ type: "error", message: serverMsg });
       console.error("Server error detail:", result);
+      if(result.error ==='Profile already exists for this user'){
+        let editprof = await fetch(ENDPOINT, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`, // DO NOT set Content-Type
+          },
+          body: fd,
+        });
+        let result;
+        const text = await editprof.text();
+        try {
+          result = text ? JSON.parse(text) : null;
+        } catch (err) {
+          result = { raw: text };
+        }
+        console.log("Done bro");
+        
+
+
+      }
     } else {
       setStatus({ type: "success", message: (result && result.message) || "Profile created/updated successfully." });
       // Optionally reset your form
@@ -192,7 +213,8 @@ const ProfilePage = () => {
         contactConsent: false,
       });
       setFiles({ resume: null, profileImage: null, additionalFile: null });
-      navigate("jobs/submit")
+      
+      navigate("/jobs/submit")
     }
   } catch (err) {
     console.error("Network/submit error:", err);
@@ -352,7 +374,7 @@ const ProfilePage = () => {
               }`}
             >
               {status.type === "success" ? <CheckCircle /> : <XCircle />}
-              <span className="ml-2">{status.message}</span>
+              <span className="ml-2 ">{status.message}</span>
             </div>
           )}
 
