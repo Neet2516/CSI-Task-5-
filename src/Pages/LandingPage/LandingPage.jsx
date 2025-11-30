@@ -11,9 +11,8 @@ import gsap from 'gsap';
 const LandingPage = () => {
     const navigate = useNavigate();
     useEffect(( () => {
-      gsap.fromTo(".img1", 
-    {autoAlpha: 0, x: -200 ,scale:0.5},
-    {autoAlpha:  1, x: 0, scale:1, duration: 5,ease: "expo.out"}
+      gsap.fromTo(".img1", {autoAlpha: 0, x: -200 ,scale:0.5},{autoAlpha:  1, x: 0, scale:1, duration: 5,ease: "expo.out"}
+      
   );
     }),[])
     

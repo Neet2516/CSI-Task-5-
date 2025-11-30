@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-
+import AllPost from './AllPost';
 const Post = () => {
     const  token=  localStorage.getItem("accessToken");
     const [text,setText]=useState("");
@@ -64,9 +64,9 @@ const Post = () => {
 };
 
   return (
-    <div className='flex mt-10 justify-center text-black  h-screen w-full'>
-        <div>
-            <form action="submit"  className='flex flex-col items-center justify-center border-2 border-blue-950   px-10 pb-5 pt-5 rounded-2xl'>
+    <div className='flex flex-col mt-10   text-black  w-full'>
+        <div className='w-full flex items-center justify-center'>
+            <form action="submit"  className='flex flex-col items-center justify-center border-2 border-blue-950 w-1/3  px-10 pb-5 pt-5 rounded-2xl'>
                 <h1 className='text-2xl font-bold text-center text-blue-950'>Create your own post</h1>
                 <input type="text" placeholder='Enter text ' className='w-full border-2 border-blue-950 px-2 py-1 rounded-lg my-3' onChange={(e)=>{
                     namechange(e);
@@ -78,6 +78,7 @@ const Post = () => {
                 }}>Create post </button>
             </form>
         </div>
+        <AllPost></AllPost>
     </div>
   )
 }

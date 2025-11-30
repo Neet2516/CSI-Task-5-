@@ -1,6 +1,5 @@
 // CompanyBlog.js
 import React, { useState } from 'react';
-import PostCard from './PostCard'; 
 
 // Placeholder images for the new post feature
 import defaultUserImage from './companyblog/user_placeholder_image.png'; 

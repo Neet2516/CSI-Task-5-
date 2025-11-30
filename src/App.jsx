@@ -6,23 +6,24 @@ import Loader from './Loader/Loader'
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    apiGet(setLoading).then(data => {
-    });
-  }, []);
-  const render  =  ()=>{
-  if(loading)return(<Loader/>)
-    else return(<AppRoutes/>)
-  }
-  useEffect(()=>{
-    render();
-  },[loading]);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   apiGet(setLoading).then(data => {
+  //   });
+  // }, []);
+  // const render  =  ()=>{
+  // if(loading)return(<Loader/>)
+  //   else return(<AppRoutes/>)
+  // }
+  // useEffect(()=>{
+  //   render();
+  // },[loading]);
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
-      {render()}
+      {/* <Toaster position="top-right" reverseOrder={false} />
+      {render()} */}
+      <AppRoutes/>
     </>
   )
 }
