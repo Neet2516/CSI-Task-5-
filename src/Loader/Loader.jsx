@@ -5,7 +5,7 @@ import logo from './logo.svg'
 
 const Loader = () => {
   return (
-  <div className='h-screen w-scren flex items-center justify-center bg-black'>
+  <div className='h-screen w-scren flex items-center justify-center bg-black overflow-hidden'>
     <StyledWrapper>
       <div className="loader">
         <div className="box">

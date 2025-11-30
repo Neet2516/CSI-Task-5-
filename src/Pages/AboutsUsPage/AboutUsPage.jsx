@@ -8,14 +8,15 @@ import { useNavigate } from 'react-router';
 import About from './About'
 import Header from '../../sections/Header/Header'
 import Footer from '../../sections/Footer/Footer'
-
+import gsap from 'gsap'
 const AboutUsPage = () => {
+  
   return (
     <div>
       <Header/>
       <div className='w-full relative flex min-h-[900px]' style={{ backgroundImage: `url(${background})` }}>
           <div className='hidden md:block w-1/3 '>
-              <img src={left} alt="" className="absolute top-0 w-1/4 " />
+              <img  src={left} alt="" className="absolute img1 top-0 w-1/4 " />
           </div>
           <div><About/></div>
           <div className='hidden md:block w-1/3  '>

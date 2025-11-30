@@ -8,6 +8,7 @@ import appleIcon from '../assets/login/apple.png';
 import { jwtDecode } from "jwt-decode";
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../redux/Jobseeker/store/userslice';
+import toast from 'react-hot-toast';
 
 const Login = () => {
 
@@ -59,12 +60,8 @@ const Login = () => {
         console.log("Decoded :", decoded);
 
         localStorage.setItem("accessData", JSON.stringify(decoded));
+        toast.success("Login Successful");
 
-        alert("Login Successful! Ready to redirect.");
-
-        // ---------------------------
-        // ✅ FIXED REDUX PART
-        // ---------------------------
         if (decoded.role === "JOBSEEKER") {
           dispatch(setUser(decoded));  
           console.log("Redux user:", userState);
@@ -175,12 +172,6 @@ const Login = () => {
           <button
             type="submit"
             className="w-full bg-[#15294B] text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-            onClick={()=>{
-              console.log("API DATA:", data);
-dispatch(setUser(data.user));
-console.log("DISPATCHED:", data.user);
-
-            }}
             disabled={loading}
     
           >

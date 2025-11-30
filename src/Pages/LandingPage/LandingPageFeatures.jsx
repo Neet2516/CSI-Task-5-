@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useLayoutEffect }  from 'react';
 import heart from '../../assets/LandingPage/Features/heart.png'
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Reusable component for a single feature block
 const FeatureItem = ({ icon, title, description }) => (
     <div className="flex items-start space-x-4 p-4 md:p-6 rounded-xl transition duration-300 hover:shadow-lg">
@@ -78,13 +80,47 @@ const Icons = {
     )
 };
 
+gsap.registerPlugin(ScrollTrigger);
 const LandingPageFeatures = () => {
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.container',
+                    pin: true,
+                    start: 'top 75%',
+                    end: '+=500',
+                    scrub: 1,
+                    snap: {
+                        snapTo: 'labels',
+                        duration: { min: 0.2, max: 3 },
+                        delay: 0.2,
+                        ease: 'power1.inOut'
+                    }
+                }
+            });
+
+            tl.addLabel("start")
+   .from(".box1", { scale: 0.3, rotation: 45, autoAlpha: 0, duration: 1000 })
+   .addLabel("color")
+   .fromTo(".box2",
+           { scale: 0.5, },
+           { scale: 1, duration: 1 }
+    )
+   .addLabel("end");
+
+        });
+
+        return () => ctx.revert(); // cleanup
+    }, []);
     return (
-        <div className="mt-10 min-h-screen bg-gray-50 p-4 md:p-12 font-sans">
-            <div className="max-w-6xl mx-auto space-y-16">
+        <div className="container mt-10 min-h-screen bg-gray-50 p-4 md:p-12 font-sans">
+            <div className=" max-w-6xl mx-auto space-y-16">
 
                 {/* Section 1: Find the job you love (Candidate Focus) */}
-                <div className="bg-[#f1f5fa] p-6 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+                <div className="box1 bg-[#f1f5fa] p-6 md:p-12 rounded-3xl shadow-xl border border-gray-100">
                     <div className="flex items-center justify-center space-x-3 mb-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center">
                             Find the job you love
@@ -114,7 +150,7 @@ const LandingPageFeatures = () => {
                 </div>
 
                 {/* Section 2: Hire the talent you need (Recruiter Focus) */}
-                <div className="bg-[#f1f5fa] p-6 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+                <div className="box2 bg-[#f1f5fa] p-6 md:p-12 rounded-3xl shadow-xl border border-gray-100">
                     <div className="flex items-center justify-center space-x-3 mb-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center">
                             Hire the talent you need

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: null,   // full object store hoga
+    user: null,  
     loggedIn: false,
   },
   reducers: {

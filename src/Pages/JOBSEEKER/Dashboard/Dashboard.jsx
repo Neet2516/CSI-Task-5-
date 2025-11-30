@@ -107,8 +107,9 @@ const [recentApplications, setRecentApplications] = useState([]);
     };
 
     const naam  =  useSelector(state=>state.user) ; 
-    const nayanaam =  naam.name  ; 
-    console.log(nayanaam);
+    const nayanaam =  naam  ; 
+    console.log("Nayaanam be - ",nayanaam.user.name);
+    const username = naam.user.name;
     return (
         
         <div className="flex h-screen bg-gray-50 font-sans">
@@ -183,7 +184,7 @@ const [recentApplications, setRecentApplications] = useState([]);
 
             {/* MAIN CONTENT */}
             <main className="w-full sm:w-auto grow overflow-y-auto p-8 mt-14 lg:mt-0">
-                <h1 className="text-3xl font-bold">Welcome Back! {name} </h1>
+                <h1 className="text-3xl font-bold">Welcome Back! {username} </h1>
                 <p className="text-gray-600 mb-8">Here is your activity summary.</p>
 
                 {/* Summary Cards */}
