@@ -21,8 +21,8 @@ const App = () => {
 
   return (
     <>
-      {/* <Toaster position="top-right" reverseOrder={false} />
-      {render()} */}
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      {/* {render()} */}
       <AppRoutes/>
     </>
   )

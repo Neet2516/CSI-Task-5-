@@ -1,8 +1,6 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom" // Use 'react-router-dom' for imports
 
-
-// --- Fixed Imports ---
 import AuthLayout from "../AuthPage/AuthLayout" // Assuming AuthLayout is a sibling component
 import SignUp from "../AuthPage/SignUp"; // Assuming SignUp is a sibling component
 import Login from "../AuthPage/Login"; // Assuming Login is a sibling component
@@ -46,6 +44,7 @@ function AppRoutes(){
 
           
           <Route path="about" element={<AboutUsPage/>}/>
+
           <Route path="jobs" element={<Hero/>} >
              <Route index element={<JSLandingPage/>}/>
              <Route path="home" element ={<JSHomePage/>}/>

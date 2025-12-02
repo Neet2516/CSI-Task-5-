@@ -15,9 +15,6 @@ const LandingPage = () => {
       
   );
     }),[])
-    
-    
-    
   return (
     <div> 
       <Header />
@@ -46,9 +43,9 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <LandingPageFeatures/>
       
-    {/* <div className='mt-10 w-full'><img src={secondimage} className='w-full  bg-cover bg-center' alt="" /></div> */}
+      
+      <LandingPageFeatures/>
     <div className='my-10 bg-[#0E224D] flex items-center justify-between'>
         <GetTheApp/>
         <div className='hidden md:block md:w-3/5 h-full'><img src={thirdimage} alt="" /></div>
