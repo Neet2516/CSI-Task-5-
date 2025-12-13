@@ -127,7 +127,6 @@ const LandingPageFeatures = () => {
         <div className=" mt-10 flex flex-col items-center justify-center w-full min-h-screen bg-linear-to-tr from-blue-950 to-nuetral-200 p-4 md:p-12 font-sans">
             <div className="  w-full mx-auto space-y-16">
 
-                {/* Section 1: Find the job you love (Candidate Focus) */}
                 <div className="box1 bg-[#f1f5fa] p-6 md:p-12 rounded-3xl shadow-xl border border-gray-100">
                     <div className="flex items-center justify-center space-x-3 mb-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center">

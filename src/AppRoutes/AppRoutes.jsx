@@ -25,6 +25,7 @@ import JRHomePage from '../Pages/JOBRECRUITER/HomePage/JRHomePage'
 import JRSubmitPage from '../Pages/JOBRECRUITER/SubmitPage/SubmitPage'
 import JRProfilePage from '../Pages/JOBRECRUITER/ProfilePage/ProfilePage'
 import JRDashboard from '../Pages/JOBRECRUITER/Dashboard/RecruiterDashboard'
+import ApplicationPage from "../Pages/JOBRECRUITER/JobApplication/ApplicationPage";
 function AppRoutes(){
   return (
     <>
@@ -53,7 +54,7 @@ function AppRoutes(){
              <Route path="profile" element={<ProfilePage/>}/>
              <Route path="dashboard" element={<Dashboard/>}/>
             <Route path="chats" element={<div></div>}/>
-             <Route path="applications" element={<div>Applications Page</div>} />
+             <Route path="applications" element={<ApplicationPage/>} />
             <Route path="saved-jobs" element={<div>Saved Jobs Page</div>} />
 
           </Route>
@@ -63,7 +64,7 @@ function AppRoutes(){
             <Route path="submit" element={<JRSubmitPage/>}/>
             <Route path="profile" element={<JRProfilePage/>}/>
             <Route path="dashboard" element={<JRDashboard/>}/>
-            <Route path="applicants" element={<div>APplications </div>}/>
+            <Route path="applicants" element={<ApplicationPage/>}/>
             <Route path="job-posts" element={<div>job-posts </div>}/>
             <Route path="chats" element={<div></div>}/>
 

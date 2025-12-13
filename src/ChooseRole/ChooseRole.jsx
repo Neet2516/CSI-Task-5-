@@ -51,9 +51,9 @@ const ChooseRole = () => {
 
   if (response.ok) {
     if (selectedRole === "candidate") {
-      navigate("/jobs");
+      navigate("/auth/login");
     } else {
-      navigate("/employer-dashboard");
+      navigate("/auth/login");
     }
   }
   else if (response.status === 403 && data.includes("User not verified yet")) {
