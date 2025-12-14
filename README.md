@@ -1,5 +1,5 @@
-This is the deployed link for this project 
-nextstep-csi.netlify.app
+This is the deployed link for this project  
+[CSI-Task-05](https://nextstep-csi.netlify.app)
 
 
 # React + Vite
