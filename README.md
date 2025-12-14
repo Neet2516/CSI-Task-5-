@@ -1,3 +1,7 @@
+This is the deployed link for this project 
+nextstep-csi.netlify.app
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
